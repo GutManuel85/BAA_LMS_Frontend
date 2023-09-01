@@ -1,0 +1,136 @@
+# ***************** Set up Project *****************
+
+# Install Vue CLI
+npm install -g @vue/cli
+
+# Create Project "lms" with the settings below
+vue create lms
+
+# Settings:
+# 1) Please pick a preset:
+# - Manually select features
+# 2) Check the features needed for your procject:
+# - Babel
+# - Router
+# - Vuex
+# - CSS Pre-processors
+# - Linter / Formatter
+# - Unit Testing
+# - E2E Testing
+# 3) Choose a version of Vue.js that you want to start the project with:
+# - 3.x
+# 4) Use history mode for router?
+# - Y
+# 5)  Pick a CSS pre-processor:
+# - Sass/SCSS (with dart-sass)
+# 6) Pick a linter / formatter config:
+# - ESLint with error prevention only
+# 7) Pick additional lint features:
+# - Lint on save
+# 8) Pick a unit testing solution:
+# - Jest
+# 9)  Pick an E2E testing solution:
+-  Cypress
+# 10)  Where do you prefer placing config for Babel, ESLint, etc.?
+- In dedicated config files
+# 11)  Save this as a preset for future projects?
+- N
+
+# Navigate to new project
+cd lms
+
+# Install Bulma
+npm install --save bulma
+npm install --save bulma-toast
+npm install --save bulma-steps-component
+# add the following at the end of the my_styles.scss file: @import "node_modules/bulma-steps-component/bulma-steps.sass";
+
+# Install Icon Library
+npm install --save @fortawesome/fontawesome-free
+npm install --save @fortawesome/vue-fontawesome@latest-3
+
+# Install Axios
+npm install --save axios
+
+# Install Vue Click Away
+npm install --save vue3-click-away
+
+# Install vue3-circle-progress: https://www.npmjs.com/package/vue3-circle-progress
+npm install --save vue3-circle-progress
+
+# Install vuedraggable
+npm install --save vuedraggable@next
+
+# Install markdown language: https://www.npmjs.com/package/remarkable
+# Syntax: https://www.markdownguide.org/cheat-sheet/
+npm install --save remarkable
+
+# Make some changes in main.js
+
+# Make some changes in App.vue
+
+# Generate View with vue cli:
+vue generate view MyView
+
+# ***************** Run Serve *****************
+
+# Run vue app auf default port 8080
+npm run serve
+
+# Run vue app auf default port 443
+npm run serve -- --port 443
+
+# ***************** Build *****************
+npm run build
+
+#Preview (https://cli.vuejs.org/guide/deployment.html#previewing-locally)
+npm install -g serve
+serve -s dist
+
+
+# ***************** Certificates DEV *****************
+# Main introductions with explanations:
+
+# Install Chocolatey: https://community.chocolatey.org/courses/installation/installing#powershell
+# => Open Powershell as Administrator and paste the command below:
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# Install openssl
+choco install openssl
+
+# Install mkcert
+choco install mkcert
+
+# Install local certificate authority (CA) (run this in root directory)
+mkcert -install
+
+cd .\lms
+mkdir ssl
+cd .\ssl
+mkcert -cert-file cert.pem -key-file key.pem localhost 127.0.0.1
+
+
+
+# ***************** Certificates PROD *****************
+# !!!TBD.
+# Install SelfSigned CA Certificate in Windows - follow this tutorial: https://aboutssl.org/installing-self-signed-ca-certificate-in-window/#:~:text=Steps%20to%20install%20SSL%20CA%20Certificate%20in%20Windows&text=Go%20to%20'File'%20and%20click,Add%2FRemove%20Snap%2Din%E2%80%A6&text=Browse%20to%20the%20certificate%20file,the%20security%20warning%2C%20click%20yes.
+
+
+
+#****************** Deployment in Production **********
+git clone https://gitlab.enterpriselab.ch/baa_manuelgut/lms/frontend.git
+npm install
+Ordner ssl mit Certificates manuell rüber kopieren
+npm runs serve
+
+
+
+
+
+
+
+
+
+
+
+

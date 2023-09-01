@@ -1,0 +1,33 @@
+# https://about.gitlab.com/blog/2017/09/12/vuejs-app-gitlab/
+
+image: node:latest
+
+stages:
+  - build
+  - test
+  - store_artifacts
+
+build:
+  stage: build
+  script:
+    - cd /builds/baa_manuelgut/lms/frontend/lms
+    - npm install
+    - npm run build
+
+test:
+  stage: test
+  script:
+    - cd /builds/baa_manuelgut/lms/frontend/lms
+    - npm install
+    - npm run test:unit
+
+store_artifacts:
+  stage: store_artifacts
+  script:
+    - cd /builds/baa_manuelgut/lms/frontend/lms
+    - npm install
+    - npm run build
+  artifacts:
+    expire_in: 2 week
+    paths:
+      - lms/dist
